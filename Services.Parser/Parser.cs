@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Services.Parser
+namespace Services
 {
     public static class Parser
     {
@@ -8,8 +8,9 @@ namespace Services.Parser
         {
             var reg1 = (ushort)((bufferReceiver[3] << 8 | bufferReceiver[4]));
             var reg2 = (ushort)((bufferReceiver[5] << 8 | bufferReceiver[6]));
-            int actualData = reg1 << 16 | reg2;
-            return BitConverter.ToSingle(BitConverter.GetBytes(actualData), 0);
+            int actualData = reg1 << 16 | reg2; 
+            var floatData = BitConverter.ToSingle(BitConverter.GetBytes(actualData), 0);
+            return float.IsNaN(floatData) ? 0.0f : floatData;
         }
 
         public static int Int16U(byte[] bufferReceiver)

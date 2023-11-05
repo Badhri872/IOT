@@ -1,5 +1,4 @@
 ﻿using BL.Contracts;
-using Services.Parser;
 using Services.SerialClient;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -8,80 +7,26 @@ namespace EnergyMeter
 {
     public class MainWindowVM : INotifyPropertyChanged
     {
-        private float _ampere;
-        private float _power;
-        private float _frequency;
-        private Command<float> _ampereCmd, _powerCmd, _frequenceCmd;
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        private readonly SerialClient _client;
+        private readonly Current _current;
+        private readonly Power _power;
 
         public MainWindowVM()
         {
-            _ampereCmd = new Command<float>(1, 3003, 3, Parser.Float32);
-            _powerCmd = new Command<float>(1, 3057, 3, Parser.Float32);
-            _frequenceCmd = new Command<float>(1, 2016, 3, Parser.Float32);
-            _ampereCmd.Received += onCurrentChanged;
-            _powerCmd.Received += onPowerChanged;
-            _frequenceCmd.Received += onFrequencyChanged;
-            Command<float>.Connect("COM7", 19200);
+            _client = new SerialClient("COM7", 19200);
+            _current = new Current(_client);
+            _power = new Power(_client);
+            _client.Connect();
         }
 
-        ~MainWindowVM()
-        {
-            Command<float>.Stop();
-        }
+        public Current Current => _current;
+        public Power Power => _power;
 
-        private void onPowerChanged(object sender, CommandEventArgs<float> e)
-        {
-            Power = e.Value;
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        private void onCurrentChanged(object sender, CommandEventArgs<float> e)
+        public void Close()
         {
-            Ampere = e.Value;
-        }
-
-        private void onFrequencyChanged(object sender, CommandEventArgs<float> e)
-        {
-            Frequency = e.Value;
-        }
-
-        public float Ampere
-        {
-            get
-            {
-                return _ampere;
-            }
-            set
-            {
-                _ampere = value;
-                onPropertyChanged();
-            }
-        }
-        public float Power
-        {
-            get
-            {
-                return _power;
-            }
-            set
-            {
-                _power = value;
-                onPropertyChanged();
-            }
-        }
-
-        public float Frequency
-        {
-            get
-            {
-                return _frequency;
-            }
-            set
-            {
-                _frequency = value;
-                onPropertyChanged();
-            }
+            _client.Stop();
         }
 
         private void onPropertyChanged([CallerMemberName]string propertyName = "")

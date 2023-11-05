@@ -7,7 +7,7 @@
     <ProjectGuid>{25E65616-1061-417D-A4D5-6315712AB74F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EnergyMeter._Core_</RootNamespace>
+    <RootNamespace>EnergyMeter</RootNamespace>
     <AssemblyName>EnergyMeter.{Core}</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -51,25 +51,31 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindowVM.cs" />
     <Compile Include="Parameters\Current.cs" />
+    <Compile Include="Parameters\Power.cs" />
     <Compile Include="ParameterType.cs" />
+    <Compile Include="ParameterVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
+    <ProjectReference Include="..\Contracts\BL.Contracts.csproj">
       <Project>{27f44b10-1349-4352-8451-a3f15d4f20e7}</Project>
-      <Name>Contracts</Name>
+      <Name>BL.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services.Parser\Services.Parser.csproj">
       <Project>{52064005-cb37-479d-ab20-f2e5348bdad2}</Project>
@@ -79,6 +85,12 @@
       <Project>{186e040b-3cd4-4ec9-b2bf-3d3d2ba5b7b1}</Project>
       <Name>Services.SerialClient</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DataTemplates\ParameterDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

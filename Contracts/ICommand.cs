@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BL.Contracts
 {
-    public interface ICommand<T>
+    public interface ICommand
     {
-        void SendCommand();
-        event EventHandler<CommandEventArgs<T>> Received;
+        void ProcessCommand();
+        event EventHandler<CommandEventArgs<byte[]>> Received;
     }
 }
