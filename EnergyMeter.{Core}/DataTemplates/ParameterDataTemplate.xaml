@@ -1,0 +1,15 @@
+﻿<ResourceDictionary x:Class="EnergyMeter._Core_.DataTemplates.ParameterDataTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:EnergyMeter"
+             xmlns:local="clr-namespace:EnergyMeter._Core_.DataTemplates"
+             mc:Ignorable="d">
+    <DataTemplate DataType="{x:Type vm:ParameterVM}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding ParameterName}" Width="200" Height="40" Margin="5 5 5 5" Foreground="White"/>
+            <TextBox Text="{Binding Value}" Width="200" Height="40" Margin="20 5 5 5" Foreground="White" Background="Gray" BorderThickness="0"/>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

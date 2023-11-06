@@ -11,6 +11,12 @@ namespace EnergyMeter
         {
             InitializeComponent();
             DataContext = new MainWindowVM();
+            Closed += MainWindow_Closed;
+        }
+
+        private void MainWindow_Closed(object sender, System.EventArgs e)
+        {
+            (DataContext as MainWindowVM).Close();
         }
     }
 }

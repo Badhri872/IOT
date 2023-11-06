@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:EnergyMeter"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../EnergyMeter.{Core};component/DataTemplates/ParameterDataTemplate.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

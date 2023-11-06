@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EnergyMeter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        WindowState="Maximized">
     <Grid Background="Black">
         <StackPanel Orientation="Vertical">
-            <TextBox Text="{Binding Ampere}"/>
-            <TextBox Text="{Binding Power}"/>
-            <TextBox Text="{Binding Frequency}"/>
+            <Expander IsExpanded="True" ExpandDirection="Down" Header="Current Details" Foreground="White">
+                <ListBox ItemsSource="{Binding Current.CurrentCollection}" Background="Gray"/>
+            </Expander>
+            <Expander IsExpanded="True" ExpandDirection="Down" Header="Power Details" Foreground="White">
+                <ListBox ItemsSource="{Binding Power.PowerCollection}" Background="Gray"/>
+            </Expander>
         </StackPanel>
     </Grid>
 </Window>

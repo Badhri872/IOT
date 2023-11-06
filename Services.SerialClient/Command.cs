@@ -3,36 +3,29 @@ using System;
 
 namespace Services.SerialClient
 {
-    public class Command<T> : ICommand<T>
+    public class Command : ICommand
     {
         private readonly byte _slaveAddress, _function;
         private readonly uint _numberOfPoints = 2;
         private readonly ushort _register;
-        private readonly Func<byte[], T> _parser;
-        private static CommandProcessor _processor = new CommandProcessor();
-        private SerialCommand _command = new SerialCommand();
-        public Command(byte slaveAddress, ushort register, byte function, Func<byte[], T> parser)
+        private SerialCommand _serialCommand = new SerialCommand();
+        public Command(byte slaveAddress, ushort register, byte function)
         {
             _slaveAddress = slaveAddress;
             _register = register;
             _function = function;
-            _parser = parser;
-            _command.Received += onReceive;
-            SendCommand();
+            _serialCommand.Received += onReceive;
+            ProcessCommand();
         }
 
-        public static void Connect(string portname, int baudRate) => 
-                            _processor.Connect(portname, baudRate);
+        public event EventHandler<CommandEventArgs<byte[]>> Received;
 
-        public static void Stop() => _processor.Stop();
+        public SerialCommand SerialCommand => _serialCommand;
 
-        public event EventHandler<CommandEventArgs<T>> Received;
-
-        public void SendCommand()
+        public void ProcessCommand()
         {
             var frame = readHoldingRegistersMsg();
-            _command.Command = frame;
-            _processor.Send(_command);
+            _serialCommand.Command = frame;
         }
 
         private byte[] readHoldingRegistersMsg()
@@ -57,7 +50,7 @@ namespace Services.SerialClient
             byte[] CRC = new byte[2];
             for (int i = 0; i < (data.Length) - 2; i++)
             {
-                CRCFull = (ushort)(CRCFull ^ data[i]); // 
+                CRCFull = (ushort)(CRCFull ^ data[i]);
 
                 for (int j = 0; j < 8; j++)
                 {
@@ -75,8 +68,7 @@ namespace Services.SerialClient
 
         private void onReceive(object sender, CommandEventArgs<byte[]> e)
         {
-            var value = _parser(e.Value);
-            Received?.Invoke(this, new CommandEventArgs<T>(value));
+            Received?.Invoke(this, new CommandEventArgs<byte[]>(e.Value));
         }
     }
 }
