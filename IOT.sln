@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EnergyMeter", "EnergyMeter"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyMeter.{Core}", "EnergyMeter.{Core}\EnergyMeter.{Core}.csproj", "{25E65616-1061-417D-A4D5-6315712AB74F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.{Database}", "Services.{Database}\Services.{Database}.csproj", "{3CAFA169-C8BE-4F25-A034-6E1E6A466994}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseSerialisationAndDeserialisationTest", "DatabaseSerialisationAndDeserialisationTest\DatabaseSerialisationAndDeserialisationTest.csproj", "{B2B94272-74CF-4D3B-8A83-2BB18A85C44D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +71,22 @@ Global
 		{25E65616-1061-417D-A4D5-6315712AB74F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{25E65616-1061-417D-A4D5-6315712AB74F}.Release|x64.ActiveCfg = Release|x64
 		{25E65616-1061-417D-A4D5-6315712AB74F}.Release|x64.Build.0 = Release|x64
+		{3CAFA169-C8BE-4F25-A034-6E1E6A466994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CAFA169-C8BE-4F25-A034-6E1E6A466994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CAFA169-C8BE-4F25-A034-6E1E6A466994}.Debug|x64.ActiveCfg = Debug|x64
+		{3CAFA169-C8BE-4F25-A034-6E1E6A466994}.Debug|x64.Build.0 = Debug|x64
+		{3CAFA169-C8BE-4F25-A034-6E1E6A466994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CAFA169-C8BE-4F25-A034-6E1E6A466994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CAFA169-C8BE-4F25-A034-6E1E6A466994}.Release|x64.ActiveCfg = Release|x64
+		{3CAFA169-C8BE-4F25-A034-6E1E6A466994}.Release|x64.Build.0 = Release|x64
+		{B2B94272-74CF-4D3B-8A83-2BB18A85C44D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2B94272-74CF-4D3B-8A83-2BB18A85C44D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2B94272-74CF-4D3B-8A83-2BB18A85C44D}.Debug|x64.ActiveCfg = Debug|x64
+		{B2B94272-74CF-4D3B-8A83-2BB18A85C44D}.Debug|x64.Build.0 = Debug|x64
+		{B2B94272-74CF-4D3B-8A83-2BB18A85C44D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2B94272-74CF-4D3B-8A83-2BB18A85C44D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2B94272-74CF-4D3B-8A83-2BB18A85C44D}.Release|x64.ActiveCfg = Release|x64
+		{B2B94272-74CF-4D3B-8A83-2BB18A85C44D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +97,8 @@ Global
 		{27F44B10-1349-4352-8451-A3F15D4F20E7} = {7DF77613-FA2B-4743-85A5-7EE57ACD7527}
 		{52064005-CB37-479D-AB20-F2E5348BDAD2} = {8B2E79AC-34E3-4911-A803-FE8F1DD5A733}
 		{25E65616-1061-417D-A4D5-6315712AB74F} = {A68691A1-40D3-4921-B081-A4834172703A}
+		{3CAFA169-C8BE-4F25-A034-6E1E6A466994} = {8B2E79AC-34E3-4911-A803-FE8F1DD5A733}
+		{B2B94272-74CF-4D3B-8A83-2BB18A85C44D} = {A68691A1-40D3-4921-B081-A4834172703A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {293784D2-1147-4363-86B2-5EB8331EB223}

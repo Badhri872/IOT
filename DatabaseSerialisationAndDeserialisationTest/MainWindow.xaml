@@ -1,0 +1,45 @@
+﻿<Window x:Class="EnergyMeter.Tests.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:datavis="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:local="clr-namespace:DatabaseSerialisationAndDeserialisationTest"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Loaded="Window_Loaded"
+        Title="MainWindow">
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Serialise" Click="Serialise_Click" Margin="5 5 5 5" Foreground="White" Background="Gray"/>
+                <Button Content="Deserialise" Click="DeSerialise_Click" Margin="5 5 5 5" Foreground="White" Background="Gray"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" Background="Gray">
+                <Grid>
+                    <ScrollViewer>
+                        <charting:Chart Name="currentChart" Title="Current(A)">
+                            <charting:LineSeries Title="Primary" IndependentValueBinding="{Binding X}" DependentValueBinding="{Binding Y}" />
+                            <charting:LineSeries Title="Secondary" IndependentValueBinding="{Binding X}" DependentValueBinding="{Binding Y}" />
+                            <charting:LineSeries Title="Tertiary" IndependentValueBinding="{Binding X}" DependentValueBinding="{Binding Y}" />
+                        </charting:Chart>
+                    </ScrollViewer>
+                </Grid>
+                <Grid>
+                    <charting:Chart Name="powerChart" Title="Power(KW)">
+                        <charting:LineSeries Title="Primary" IndependentValueBinding="{Binding X}" DependentValueBinding="{Binding Y}" />
+                        <charting:LineSeries Title="Secondary" IndependentValueBinding="{Binding X}" DependentValueBinding="{Binding Y}" />
+                        <charting:LineSeries Title="Tertiary" IndependentValueBinding="{Binding X}" DependentValueBinding="{Binding Y}" />
+                    </charting:Chart>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

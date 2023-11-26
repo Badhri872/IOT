@@ -9,6 +9,7 @@ namespace EnergyMeter
     {
         public MainWindow()
         {
+            //var database = new Services.Database(@"G:\Subject\IOT4.0\ServerData\Session.sdf");
             InitializeComponent();
             DataContext = new MainWindowVM();
             Closed += MainWindow_Closed;

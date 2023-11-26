@@ -1,5 +1,7 @@
 ﻿using BL.Contracts;
+using Services;
 using Services.SerialClient;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using static Services.Parser;
 
@@ -37,11 +39,94 @@ namespace EnergyMeter
             _tertiary = new ParameterVM("Tertiary Current(A)");
         }
 
+        public Current(double primary, double secondary, double tertiary)
+        {
+            _primary = new ParameterVM("Primary Current(A)");
+            _secondary = new ParameterVM("Secondary Current(A)");
+            _tertiary = new ParameterVM("Tertiary Current(A)");
+
+            _primary.Value = primary.ToString();
+            _secondary.Value = secondary.ToString();
+            _tertiary.Value = tertiary.ToString();
+        }
+
+        public Current(List<IFieldValue> currentData)
+        {
+            _primary = new ParameterVM("Primary Current(A)");
+            _secondary = new ParameterVM("Secondary Current(A)");
+            _tertiary = new ParameterVM("Tertiary Current(A)");
+
+            _primary.Value = currentData[0].Value.ToString();
+            _secondary.Value = currentData[1].Value.ToString();
+            _tertiary.Value = currentData[2].Value.ToString();
+        }
+
         public ObservableCollection<ParameterVM> CurrentCollection =>
             new ObservableCollection<ParameterVM>
             {
                 _primary, _secondary, _tertiary
             };
+
+        public double Primary
+        {
+            get
+            {
+                return double.Parse(_primary.Value);
+            }
+            set
+            {
+                _primary.Value = value.ToString();
+            }
+        }
+
+        public double Secondary
+        {
+            get
+            {
+                return double.Parse(_secondary.Value);
+            }
+            set
+            {
+                _secondary.Value = value.ToString();
+            }
+        }
+
+        public double Tertiary
+        {
+            get
+            {
+                return double.Parse(_tertiary.Value);
+            }
+            set
+            {
+                _tertiary.Value = value.ToString();
+            }
+        }
+
+        public List<IFieldValue> GetValues()
+        {
+            return new List<IFieldValue>
+            {
+                new FieldValue
+                {
+                    Name = nameof(Primary),
+                    Value = Primary,
+                    DataType = Primary.GetType(),
+                },
+                new FieldValue
+                {
+                    Name = nameof(Secondary),
+                    Value = Secondary,
+                    DataType = Secondary.GetType(),
+                },
+                new FieldValue
+                {
+                    Name = nameof(Tertiary),
+                    Value = Tertiary,
+                    DataType = Tertiary.GetType(),
+                }
+            };
+        }
 
         private void onTertiaryCurrentReceived(object sender, CommandEventArgs<byte[]> e)
         {

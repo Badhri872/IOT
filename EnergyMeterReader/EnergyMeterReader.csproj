@@ -119,6 +119,10 @@
       <Project>{25e65616-1061-417d-a4d5-6315712ab74f}</Project>
       <Name>EnergyMeter.{Core}</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Services.{Database}\Services.{Database}.csproj">
+      <Project>{3cafa169-c8be-4f25-a034-6e1e6a466994}</Project>
+      <Name>Services.{Database}</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
